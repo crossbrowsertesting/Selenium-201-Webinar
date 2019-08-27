@@ -4,21 +4,28 @@ import unittest
 class LoginForm:
     def __init__(self, driver):
         self.driver = driver
-        self.title = "Login Form - CrossBrowserTesting.com"
+        self.title = "CrossBrowserTesting App"
+
+        self.email_address = "tester@crossbrowsertesting.com"
+        self.password = "test123"
+
+        self.email_address_locator = 'inputEmail'
+        self.password_locator = 'password'
+        self.submit_button_locator = 'button[data-se-id="login-btn"]'
     
-    def title_matches():
-        return self.title = self.driver.title
+    def title_matches(self):
+        return self.title == self.driver.title
 
     def login(self):
         assert self.title_matches()
 
-        username_field = self.driver.find_element(By.ID, "username")
-        username_field.send_text("tester@crossbrowsertesting.com")
+        username_field = self.driver.find_element(By.ID, self.email_address_locator)
+        username_field.send_keys(self.email_address)
 
-        password_field = self.driver.find_element(By.ID, "password")
-        password_field.send_text("test123")
+        password_field = self.driver.find_element(By.NAME, self.password_locator)
+        password_field.send_keys(self.password)
 
-        submit_button = self.driver.find_element(By.CSS_SELECTOR, "#submit")
+        submit_button = self.driver.find_element(By.CSS_SELECTOR, self.submit_button_locator)
         submit_button.click()
 
         
