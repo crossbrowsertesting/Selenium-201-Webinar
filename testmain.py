@@ -11,7 +11,7 @@ from LoginForm import LoginForm
 import time
 
 def create_driver():
-    return webdriver.Chrome('./chromedriver')
+    return webdriver.Chrome('chromedriver')
 
 def test_live():
     driver = create_driver()
@@ -20,11 +20,12 @@ def test_live():
     login_form = LoginForm(driver)
     login_form.login()
 
-    driver.find_element(By.ID, 'address').send_keys("https://crossbrowsertesting.com")
 
     # this might make more sense in a LiveTest class
     wait = WebDriverWait(driver, 5)
     url_bar = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'input[data-se-id="liveTestUrl"]')))
+
+    driver.find_element(By.NAME, 'address').send_keys("https://crossbrowsertesting.com")
 
     time.sleep(5)
     driver.quit()

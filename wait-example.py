@@ -9,23 +9,24 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 # example of using ExpectedConditions
 from selenium.webdriver.support import expected_conditions as EC
+from creds import creds
 
 def pause():
     input("Press any button to continue..")
 
 # some boilerplate - create a webdriver using a local chromedriver binary
-driver = webdriver.Chrome('./chromedriver')
+driver = webdriver.Chrome('chromedriver')
 
 # navigate to the crossbrowsertesting website
 driver.get('https://app.crossbrowsertesting.com/login')
 
 # find email field using its ID attribute
 email_input = driver.find_element(By.ID, 'inputEmail')
-email_input.send_keys("tester@crossbrowsertesting.com")
+email_input.send_keys(creds.email_address.value)
 
 # find the password field using its name attribute
 password_input = driver.find_element(By.NAME, 'password')
-password_input.send_keys("test123")
+password_input.send_keys(creds.password.value)
 
 # could use ID here.. but let's try using CSS selectors instead
 submit_button = driver.find_element(By.CSS_SELECTOR, 'button[data-se-id="login-btn"]')

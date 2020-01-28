@@ -1,13 +1,13 @@
 from selenium.webdriver.common.by import By
 import unittest
+from creds import creds
 
 class LoginForm:
     def __init__(self, driver):
         self.driver = driver
         self.title = "CrossBrowserTesting App"
-
-        self.email_address = "tester@crossbrowsertesting.com"
-        self.password = "test123"
+        self.email_address = creds.email_address.value
+        self.password = creds.password.value
 
         self.email_address_locator = 'inputEmail'
         self.password_locator = 'password'
